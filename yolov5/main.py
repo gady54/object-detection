@@ -55,12 +55,11 @@ if not table_exists:
 else:
     print("Table 'Data' already exists")
 
-# Path to your trained model weights
-weightsPath = 'C:/Users/gadyy/Documents/Electrical_Enginering/Final Project/Project/yolov5/runs/train/exp/weights/best.pt'
-
 # Load the trained model and move it to GPU if available
+weightsPath = os.getenv('YOLOV5_WEIGHTS_PATH', 'path/to/default/weights.pt')
+yoloPath = os.getenv('YOLOV5_PATH', 'path/to/yolov5')
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = torch.hub.load('C:/Users/gadyy/Documents/Electrical_Enginering/Final Project/Project/yolov5', 'custom', path=weightsPath, source='local').to(device)
+model = torch.hub.load(yoloPath, 'custom', path=weightsPath, source='local').to(device)
 # Initialize webcam
 cap = cv2.VideoCapture(0)
 
