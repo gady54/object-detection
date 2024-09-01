@@ -123,7 +123,7 @@ async def generate_data(cap, camera_id):
         mydb.commit()
 
         # Display the frame with detection results
-        cv2.imshow(f'Drone Detection - Camera {camera_id}', frame)
+        #cv2.imshow(f'Drone Detection - Camera {camera_id}', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
@@ -150,7 +150,7 @@ def InitDatabse():
     table_exists = mycursor.fetchone()
     if not table_exists:
         mycursor.execute(
-            "CREATE TABLE DataDrone2Cam (DroneNumber INT AUTO_INCREMENT PRIMARY KEY, Camera INT, Direction VARCHAR(255), Angle VARCHAR(255), DronesDetected INT, DateTime DATETIME, `Time passed` INT)"
+            "CREATE TABLE DataDrone2Cam ( No INT AUTO_INCREMENT PRIMARY KEY, Camera INT, Direction VARCHAR(255), Angle VARCHAR(255), DronesDetected INT DEFAULT 0 , DateTime DATETIME, `Time passed` INT)"
         )
         mydb.commit()
     else:
